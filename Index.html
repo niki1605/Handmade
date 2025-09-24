@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Все для дома руками - Самодельные товары</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Все для дома руками</h1>
+                <p> Самодельные товары</p>
+            </div>
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Поиск товаров...">
+                <button id="search-btn">Найти</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Навигация -->
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#" class="active">Все товары</a></li>
+                <li><a href="#">Для ванной</a></li>
+                <li><a href="#">Для кухни</a></li>
+            </ul>
+            <div class="sort">
+                <label for="sort">Сортировка:</label>
+                <select id="sort">
+                    <option value="default">По умолчанию</option>
+                    <option value="price-asc">Цена по возрастанию</option>
+                    <option value="price-desc">Цена по убыванию</option>
+                </select>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Основной контент -->
+    <main class="container">
+        <div id="products-grid" class="products-grid">
+            <!-- Товары будут загружены через JavaScript -->
+        </div>
+    </main>
+
+    <!-- Модальное окно заказа -->
+    <div id="order-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Заказать товар</h2>
+            <div id="modal-product-info"></div>
+            <div class="contact-info">
+                <p>Телефон мастера: <strong id="master-phone">+7 XXX XXX-XX-XX</strong></p>
+                <div class="messengers">
+                    <p>Доступные способы связи:</p>
+                    <div id="whatsapp-available" class="messenger-option">
+                        <span>WhatsApp</span>
+                    </div>
+                    <div id="telegram-available" class="messenger-option">
+                        <span>Telegram</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Подвал сайта -->
+    <footer>
+        <div class="container">
+            <div class="footer-section">
+                <h3>Категории</h3>
+                <ul>
+                    <li><a href="#">Товары для ванной</a></li>
+                    <li><a href="#">Товары для кухни</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Контакты поддержки</h3>
+                <p>г. Новокубанск</p>
+                <p>WhatsApp: +7-918-695-40-61</p>
+            </div>
+            <div class="footer-section">
+                <h3>О нас</h3>
+                <p>Мы создаем уникальные handmade товары с душой и заботой о качестве.</p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 Ручная работа. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

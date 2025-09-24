@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Детальная страница товара - Все для дома руками</title>
+    <link rel="stylesheet" href="product.css">
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <h1>Детальная страница товара</h1>
+                    <p> Самодельные товары</p>
+                </a>
+            </div>
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Поиск товаров...">
+                <button id="search-btn">Найти</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Навигация -->
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="index.html">Все товары</a></li>
+                <li><a href="#">Для ванной</a></li>
+                <li><a href="#">Для кухни</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Хлебные крошки -->
+    <div class="breadcrumbs container">
+        <a href="index.html">Главная</a> &gt; 
+        <a href="#" id="category-link">Категория</a> &gt; 
+        <span id="product-name">Название товара</span>
+    </div>
+
+    <!-- Основной контент -->
+    <main class="container">
+        <div class="product-detail">
+            <div class="product-gallery">
+                <div class="main-image">
+                    <img id="product-image" src="" alt="Изображение товара">
+                    <div class="zoom-icon" id="zoom-btn">🔍</div>
+                </div>
+            </div>
+            
+            <div class="product-info">
+                <h1 id="product-title">Название товара</h1>
+                <p class="product-price" id="product-price">0 руб.</p>
+                <p class="product-description" id="product-description">Описание товара</p>
+                
+                <button class="order-btn large" id="order-btn">Заказать</button>
+                
+                <div class="product-specs">
+                    <h2>Характеристики</h2>
+                    <div class="specs-grid">
+                        <div class="spec-item">
+                            <span class="spec-name">Материал:</span>
+                            <span class="spec-value" id="spec-material">-</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-name">Размеры:</span>
+                            <span class="spec-value" id="spec-dimensions">-</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-name">Цвет:</span>
+                            <span class="spec-value" id="spec-color">-</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-name">Вес:</span>
+                            <span class="spec-value" id="spec-weight">-</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product-features">
+                    <h2>Особенности</h2>
+                    <ul id="features-list">
+                        <!-- Особенности будут добавлены через JS -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Модальное окно заказа -->
+    <div id="order-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Заказать товар</h2>
+            <div id="modal-product-info"></div>
+            <div class="contact-info">
+                <p>Телефон мастера: <strong id="master-phone">+7 XXX XXX-XX-XX</strong></p>
+                <div class="messengers">
+                    <p>Доступные способы связи:</p>
+                    <div id="whatsapp-available" class="messenger-option">
+                        <span>WhatsApp</span>
+                    </div>
+                    <div id="telegram-available" class="messenger-option">
+                        <span>Telegram</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно для полноэкранного просмотра изображения -->
+    <div id="image-modal" class="modal">
+        <div class="modal-content image-modal-content">
+            <span class="close-image">&times;</span>
+            <img id="fullscreen-image" src="" alt="Полноэкранное изображение товара">
+        </div>
+    </div>
+
+    <!-- Подвал сайта -->
+    <footer>
+        <div class="container">
+            <div class="footer-section">
+                <h3>Категории</h3>
+                <ul>
+                    <li><a href="#">Товары для ванной</a></li>
+                    <li><a href="#">Товары для кухни</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                 <h3>Контакты поддержки</h3>
+                <p>г. Новокубанск</p>
+                <p>WhatsApp: +7-918-695-40-61</p>
+            </div>
+            <div class="footer-section">
+                <h3>О нас</h3>
+                <p>Мы создаем уникальные handmade товары с душой и заботой о качестве.</p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 Ручная работа. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="product.js"></script>
+</body>
+</html>
