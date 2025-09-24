@@ -29,7 +29,7 @@ const products = [
         whatsapp: true,
         telegram: false,
         details: {
-            material: "Копроновый шпагат",
+            material: "Капроновый шпагат",
             dimensions: "23×9 см",
             color: "Разноцветная",
             weight: "0.1 кг",
