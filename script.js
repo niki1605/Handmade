@@ -20,10 +20,10 @@ const products = [
     },
     {
         id: 2,
-        title: "Плетеная мочалка из капрона",
+        title: "Разноцветная плетеная мочалка из капрона",
         description: "Мочалка ручной работы. Отлично подходит для очищения кожи",
         price: 200,
-        image: "images/product1.jpeg",
+        image: "images/mohalka1.jpeg",
         category: "Для ванной",
         masterPhone: "+7 918 074-41-97",
         whatsapp: true,
@@ -33,7 +33,7 @@ const products = [
             dimensions: "23×9 см",
             color: "Разноцветная",
             weight: "0.1 кг",
-            features: ["Экологичный материал", "Подходит для чувствительной кожи", "Естественный пилинг"]
+            features: ["Естественный пилинг"]
         }
     },
     {
@@ -52,6 +52,24 @@ const products = [
             color: "Светлое дерево",
             weight: "0.2 кг",
             features: ["Ручная шлифовка", "Безопасна для антипригарного покрытия", "Удобная ручка"]
+        }
+    },
+    {
+        id: 4,
+        title: "Синекрасная плетеная мочалка из капрона",
+        description: "Мочалка Синекрасная с желтыми ручками ручной работы. Отлично подходит для очищения кожи",
+        price: 200,
+        image: "images/mohalka2.jpeg",
+        category: "Для ванной",
+        masterPhone: "+7 918 074-41-97",
+        whatsapp: true,
+        telegram: false,
+        details: {
+            material: "Натуральная люфа",
+            dimensions: "23×7 см",
+            color: "Синекрасная с желтыми ручками",
+            weight: "0.1 кг",
+            features: ["Естественный пилинг"]
         }
     }
 ];
