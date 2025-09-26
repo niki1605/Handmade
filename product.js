@@ -7,7 +7,7 @@ const products = [
         price: 500,
         image: "images/product2.jpeg",
         category: "Для кухни",
-        masterPhone: "+7 999 123-45-67",
+        masterPhone: "Товар на изготовлении",
         whatsapp: true,
         telegram: false,
         details: {
@@ -29,11 +29,11 @@ const products = [
         whatsapp: true,
         telegram: false,
         details: {
-            material: "Натуральная люфа",
+            //material: "Натуральная люфа",
             dimensions: "23×9 см",
             color: "Разноцветная",
             weight: "0.1 кг",
-            features: ["Естественный пилинг"]
+            features: ["Хороший пилинг","Отшелушивание омертвевших клеток"]
         }
     },
     {
@@ -43,7 +43,7 @@ const products = [
         price: 300,
         image: "images/product3.jpg",
         category: "Для кухни",
-        masterPhone: "+7 916 777-88-99",
+        masterPhone: "Товар на изготовлении",
         whatsapp: true,
         telegram: false,
         details: {
@@ -56,8 +56,8 @@ const products = [
     } ,
     {
         id: 4,
-        title: "Синекрасная плетеная мочалка из капрона",
-        description: "Мочалка Синекрасная с желтыми ручками ручной работы. Отлично подходит для очищения кожи",
+        title: "Сине-красная плетеная мочалка из капрона",
+        description: "Мочалка Сине-красная с желтыми ручками ручной работы. Отлично подходит для очищения кожи",
         price: 200,
         image: "images/mohalka2.jpeg",
         category: "Для ванной",
@@ -65,11 +65,11 @@ const products = [
         whatsapp: true,
         telegram: false,
         details: {
-            material: "Натуральная люфа",
+            //material: "Капрон",
             dimensions: "23×7 см",
-            color: "Синекрасная с желтыми ручками",
+            color: "Сине-красная с желтыми ручками",
             weight: "0.1 кг",
-            features: ["Естественный пилинг"]
+            features: ["Хороший пилинг","Отшелушивание омертвевших клеток"]
         }
     }
 ];
