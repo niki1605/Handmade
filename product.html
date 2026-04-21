@@ -57,12 +57,17 @@
     <!-- Основной контент -->
     <main class="container">
         <div class="product-detail">
-            <div class="product-gallery">
-                <div class="main-image">
-                    <img id="product-image" src="" alt="Изображение товара">
-                    <div class="zoom-icon" id="zoom-btn">🔍</div>
-                </div>
-            </div>
+           <div class="product-gallery">
+    <div class="gallery-container">
+        <button class="gallery-nav prev" id="prev-image">&#10094;</button>
+        <div class="main-image">
+            <img id="product-image" src="" alt="Изображение товара">
+            <div class="zoom-icon" id="zoom-btn">🔍</div>
+        </div>
+        <button class="gallery-nav next" id="next-image">&#10095;</button>
+    </div>
+    <div class="thumbnails-container"></div>
+</div>
             
             <div class="product-info">
                 <h1 id="product-title">Название товара</h1>

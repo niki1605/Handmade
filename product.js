@@ -108,22 +108,50 @@ const products = [
             features: ["Хороший пилинг","Отшелушивание омертвевших клеток"]
         }
     }*/
+   ,
+    {
+        id: 7,
+        title: "Кашпо из ротанга",
+        description: `Уют» — кашпо ручной работы, которые хочется трогать
+
+Авторские узоры, только натуральные материалы, никакого пластика.
+Каждое кашпо создаётся с душой — медленно, аккуратно, с любовью к деталям.
+
+Сделано в России. Семейное производство.`,
+        price: 2000,
+        image: "images/кашпо1карточка.png",
+         images: ["images/кашпо1карточка.png", "images/кашпо_1_карточка_вид2.png", "images/кашпо1_вид_3.png"], // несколько изображений
+        category: "Интерьер",
+        masterPhone: "+7 918 695 40 61",
+        whatsapp: true,
+        telegram: true,
+        details: {
+           material: "Искуственный ротанг",
+            dimensions: "27×37×37 см",
+            color: "Светлое дерево",
+            weight: "800 г",
+            features: ["Ручная работа", "Красивый узор"]
+        }
+    }
 ];
+
+// Глобальная переменная для текущего товара и индекса изображения
+let currentProduct = null;
+let currentImageIndex = 0;
 
 // Загрузка информации о товаре при загрузке страницы
 document.addEventListener('DOMContentLoaded', function() {
-    // Получаем ID товара из URL
     const urlParams = new URLSearchParams(window.location.search);
     const productId = parseInt(urlParams.get('id'));
     
-    // Находим товар по ID
     const product = products.find(p => p.id === productId);
     
     if (product) {
+        currentProduct = product;
         displayProductDetails(product);
         setupEventListeners(product);
+        setupGallery(product);
     } else {
-        // Если товар не найден, показываем сообщение об ошибке
         document.querySelector('main').innerHTML = `
             <div class="error-message">
                 <h2>Товар не найден</h2>
@@ -136,48 +164,144 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Функция отображения детальной информации о товаре
 function displayProductDetails(product) {
-    // Обновляем заголовок страницы
     document.title = `${product.title} - Ручная работа`;
     
-    // Заполняем хлебные крошки
     document.getElementById('category-link').textContent = product.category;
-    document.getElementById('category-link').href = `index.html?category=${product.category}`;
+    document.getElementById('category-link').href = `index.html?category=${encodeURIComponent(product.category)}`;
     document.getElementById('product-name').textContent = product.title;
     
-    // Заполняем основную информацию о товаре
-    document.getElementById('product-image').src = product.image;
+    // Устанавливаем первое изображение
+    const images = product.images || [product.image];
+    document.getElementById('product-image').src = images[0];
     document.getElementById('product-image').alt = product.title;
+    
     document.getElementById('product-title').textContent = product.title;
     document.getElementById('product-price').textContent = `${product.price} руб.`;
     document.getElementById('product-description').textContent = product.description;
     
-    // Заполняем характеристики
-    document.getElementById('spec-material').textContent = product.details.material;
-    document.getElementById('spec-dimensions').textContent = product.details.dimensions;
-    document.getElementById('spec-color').textContent = product.details.color;
-    document.getElementById('spec-weight').textContent = product.details.weight;
+    document.getElementById('spec-material').textContent = product.details.material || '-';
+    document.getElementById('spec-dimensions').textContent = product.details.dimensions || '-';
+    document.getElementById('spec-color').textContent = product.details.color || '-';
+    document.getElementById('spec-weight').textContent = product.details.weight || '-';
     
-    // Заполняем особенности
     const featuresList = document.getElementById('features-list');
     featuresList.innerHTML = '';
     
-    product.details.features.forEach(feature => {
-        const li = document.createElement('li');
-        li.textContent = feature;
-        featuresList.appendChild(li);
+    if (product.details.features && product.details.features.length) {
+        product.details.features.forEach(feature => {
+            const li = document.createElement('li');
+            li.textContent = feature;
+            featuresList.appendChild(li);
+        });
+    } else {
+        featuresList.innerHTML = '<li>Информация отсутствует</li>';
+    }
+}
+
+// Настройка галереи изображений
+function setupGallery(product) {
+    const images = product.images || [product.image];
+    if (!images.length) return;
+    
+    currentImageIndex = 0;
+    
+    // Создаем контейнер для миниатюр, если его нет
+    let thumbnailsContainer = document.querySelector('.thumbnails-container');
+    if (!thumbnailsContainer) {
+        const galleryDiv = document.querySelector('.product-gallery');
+        thumbnailsContainer = document.createElement('div');
+        thumbnailsContainer.className = 'thumbnails-container';
+        galleryDiv.appendChild(thumbnailsContainer);
+    }
+    
+    // Очищаем и заполняем миниатюры
+    thumbnailsContainer.innerHTML = '';
+    images.forEach((imgSrc, idx) => {
+        const thumb = document.createElement('div');
+        thumb.className = 'thumbnail';
+        if (idx === currentImageIndex) thumb.classList.add('active');
+        
+        const img = document.createElement('img');
+        img.src = imgSrc;
+        img.alt = `${product.title} - фото ${idx + 1}`;
+        
+        thumb.appendChild(img);
+        thumb.addEventListener('click', () => {
+            currentImageIndex = idx;
+            updateMainImage(images[currentImageIndex]);
+            updateActiveThumbnail();
+        });
+        
+        thumbnailsContainer.appendChild(thumb);
+    });
+    
+    // Обновляем основное изображение
+    updateMainImage(images[currentImageIndex]);
+    
+    // Показываем/скрываем кнопки навигации
+    const prevBtn = document.getElementById('prev-image');
+    const nextBtn = document.getElementById('next-image');
+    
+    if (prevBtn && nextBtn) {
+        prevBtn.style.display = images.length > 1 ? 'flex' : 'none';
+        nextBtn.style.display = images.length > 1 ? 'flex' : 'none';
+        
+        // Удаляем старые обработчики, чтобы не навешивать лишние
+        const newPrevBtn = prevBtn.cloneNode(true);
+        const newNextBtn = nextBtn.cloneNode(true);
+        prevBtn.parentNode.replaceChild(newPrevBtn, prevBtn);
+        nextBtn.parentNode.replaceChild(newNextBtn, nextBtn);
+        
+        newPrevBtn.addEventListener('click', () => {
+            if (images.length === 0) return;
+            currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+            updateMainImage(images[currentImageIndex]);
+            updateActiveThumbnail();
+        });
+        
+        newNextBtn.addEventListener('click', () => {
+            if (images.length === 0) return;
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            updateMainImage(images[currentImageIndex]);
+            updateActiveThumbnail();
+        });
+    }
+}
+
+function updateMainImage(src) {
+    const mainImg = document.getElementById('product-image');
+    if (mainImg) {
+        mainImg.src = src;
+    }
+    // Также обновляем изображение в модальном окне (если открыто)
+    const fullscreenImg = document.getElementById('fullscreen-image');
+    if (fullscreenImg && fullscreenImg.src !== src) {
+        // Не обновляем автоматически, чтобы не сбивать просмотр
+    }
+}
+
+function updateActiveThumbnail() {
+    const thumbs = document.querySelectorAll('.thumbnail');
+    thumbs.forEach((thumb, idx) => {
+        if (idx === currentImageIndex) {
+            thumb.classList.add('active');
+        } else {
+            thumb.classList.remove('active');
+        }
     });
 }
 
 // Настройка обработчиков событий
 function setupEventListeners(product) {
-    // Настройка модального окна заказа
     const orderModal = document.getElementById('order-modal');
-    const closeOrderBtn = document.querySelector('.close');
+    const closeOrderBtn = document.querySelector('#order-modal .close');
     const orderBtn = document.getElementById('order-btn');
     
-    closeOrderBtn.addEventListener('click', function() {
-        orderModal.style.display = 'none';
-    });
+    if (closeOrderBtn) {
+        closeOrderBtn.addEventListener('click', function() {
+            orderModal.style.display = 'none';
+        });
+    }
     
     window.addEventListener('click', function(e) {
         if (e.target === orderModal) {
@@ -185,30 +309,34 @@ function setupEventListeners(product) {
         }
     });
     
-    orderBtn.addEventListener('click', function() {
-        openOrderModal(product);
-    });
+    if (orderBtn) {
+        orderBtn.addEventListener('click', function() {
+            openOrderModal(product);
+        });
+    }
     
-    // Настройка модального окна для полноэкранного изображения
     const imageModal = document.getElementById('image-modal');
-    const closeImageBtn = document.querySelector('.close-image');
+    const closeImageBtn = document.querySelector('#image-modal .close-image');
     const zoomBtn = document.getElementById('zoom-btn');
     const productImage = document.getElementById('product-image');
     
-    // Обработчик для кнопки увеличения
-    zoomBtn.addEventListener('click', function() {
-        openImageModal(product.image, product.title);
-    });
+    if (zoomBtn) {
+        zoomBtn.addEventListener('click', function() {
+            openImageModal(productImage.src, product.title);
+        });
+    }
     
-    // Обработчик для клика по изображению
-    productImage.addEventListener('click', function() {
-        openImageModal(product.image, product.title);
-    });
+    if (productImage) {
+        productImage.addEventListener('click', function() {
+            openImageModal(productImage.src, product.title);
+        });
+    }
     
-    // Обработчик для закрытия модального окна изображения
-    closeImageBtn.addEventListener('click', function() {
-        imageModal.style.display = 'none';
-    });
+    if (closeImageBtn) {
+        closeImageBtn.addEventListener('click', function() {
+            imageModal.style.display = 'none';
+        });
+    }
     
     window.addEventListener('click', function(e) {
         if (e.target === imageModal) {
@@ -216,16 +344,33 @@ function setupEventListeners(product) {
         }
     });
     
-    // Закрытие по клавише Escape
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
             orderModal.style.display = 'none';
             imageModal.style.display = 'none';
         }
+        // Переключение изображений стрелками, если галерея открыта
+        if (imageModal.style.display === 'block' && currentProduct) {
+            const images = currentProduct.images || [currentProduct.image];
+            if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+                const newSrc = images[currentImageIndex];
+                document.getElementById('fullscreen-image').src = newSrc;
+                updateMainImage(newSrc);
+                updateActiveThumbnail();
+            } else if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                currentImageIndex = (currentImageIndex + 1) % images.length;
+                const newSrc = images[currentImageIndex];
+                document.getElementById('fullscreen-image').src = newSrc;
+                updateMainImage(newSrc);
+                updateActiveThumbnail();
+            }
+        }
     });
 }
 
-// Функция открытия модального окна заказа
 function openOrderModal(product) {
     const modal = document.getElementById('order-modal');
     const modalProductInfo = document.getElementById('modal-product-info');
@@ -240,22 +385,25 @@ function openOrderModal(product) {
     const whatsappOption = document.getElementById('whatsapp-available');
     const telegramOption = document.getElementById('telegram-available');
     
-    if (product.whatsapp) {
-        whatsappOption.classList.add('available');
-    } else {
-        whatsappOption.classList.remove('available');
+    if (whatsappOption) {
+        if (product.whatsapp) {
+            whatsappOption.classList.add('available');
+        } else {
+            whatsappOption.classList.remove('available');
+        }
     }
     
-    if (product.telegram) {
-        telegramOption.classList.add('available');
-    } else {
-        telegramOption.classList.remove('available');
+    if (telegramOption) {
+        if (product.telegram) {
+            telegramOption.classList.add('available');
+        } else {
+            telegramOption.classList.remove('available');
+        }
     }
     
     modal.style.display = 'block';
 }
 
-// Функция открытия модального окна с изображением
 function openImageModal(imageSrc, imageAlt) {
     const modal = document.getElementById('image-modal');
     const fullscreenImage = document.getElementById('fullscreen-image');
