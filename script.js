@@ -1,33 +1,35 @@
 // Данные о товарах
 const products = [
-   /* {
+   /*{
         id: 1,
         title: "Деревянная разделочная доска",
-        description: "Экологичная разделочная доска из массива дуба с удобной ручкой.",
+        description: "Экологичная разделочная доска из массива дуба с удобной ручкой. Идеально подходит для ежедневного использования на кухне. Изготовлена вручную с тщательной шлифовкой и обработкой пищевым маслом.",
         price: 500,
         image: "images/product2.jpeg",
         category: "Для кухни",
         masterPhone: "Товар на изготовлении",
-        whatsapp: true,
-        telegram: false,
+       // whatsapp: true,
+        telegram: true,
+        max: true,
         details: {
             material: "Массив дуба",
             dimensions: "30×20×2 см",
             color: "Натуральное дерево",
             weight: "0.8 кг",
-            features: ["Антибактериальная пропитка", "Удобная ручка", "Подходит для всех типов ножей"]
+            features: ["Антибактериальная пропитка", "Удобная ручка", "Подходит для всех типов ножей", "Ручная работа", "Экологичный материал"]
         }
     },
     {
         id: 2,
         title: "Разноцветная плетеная мочалка из капрона",
-        description: "Мочалка ручной работы. Отлично подходит для очищения и пилинга кожи",
+        description: "Мочалка ручной работы. Отлично подходит для очищения кожи",
         price: 200,
         image: "images/mohalka1.jpeg",
         category: "Для ванной",
         masterPhone: "+7 918 074-41-97",
-        whatsapp: true,
-        telegram: false,
+       //whatsapp: true,
+        telegram: true,
+        max: true,
         details: {
             //material: "Натуральная люфа",
             dimensions: "23×9 см",
@@ -39,33 +41,34 @@ const products = [
     {
         id: 3,
         title: "Деревянная ложка для кухни",
-        description: "(На фото изображен б/у товар в реальности он будет новый)Ручная работа из бука, идеально отполированная и безопасная для посуды.",
+        description: "(На фото изображен б/у товар в реальности он будет новый)Ручная работа из бука, идеально отполированная и безопасная для посуды. Не повреждает антипригарное покрытие и не впитывает запахи. Удобно лежит в руке.",
         price: 300,
         image: "images/product3.jpg",
         category: "Для кухни",
         masterPhone: "+7 918 688-42-86",
-        whatsapp: true,
-        telegram: false,
+       // whatsapp: true,
+        telegram: true,
         details: {
             material: "Массив бука",
             dimensions: "28×5×3 см",
             color: "Светлое дерево",
             weight: "0.2 кг",
-            features: ["Ручная шлифовка", "Безопасна для антипригарного покрытия", "Удобная ручка"]
+            features: ["Ручная шлифовка", "Безопасна для антипригарного покрытия", "Удобная ручка", "Не впитывает запахи", "Долговечная"]
         }
-    }/*,
+    } /*,
     {
         id: 4,
         title: "Сине-красная плетеная мочалка из капрона",
-        description: "Мочалка Сине-красная с желтыми ручками ручной работы. Отлично подходит для очищения и пилинга кожи",
+        description: "Мочалка Сине-красная с желтыми ручками ручной работы. Отлично подходит для очищения кожи",
         price: 200,
         image: "images/mohalka2.jpeg",
         category: "Для ванной",
         masterPhone: "+7 918 074-41-97",
-        whatsapp: true,
-        telegram: false,
+       //whatsapp: true,
+        telegram: true,
+        max: true,
         details: {
-           // material: "Натуральная люфа",
+            //material: "Капрон",
             dimensions: "23×7 см",
             color: "Сине-красная с желтыми ручками",
             weight: "0.1 кг",
@@ -80,8 +83,9 @@ const products = [
         image: "images/mohalka3.jpeg",
         category: "Для ванной",
         masterPhone: "+7 918 074-41-97",
-        whatsapp: true,
-        telegram: false,
+      //whatsapp: true,
+        telegram: true,
+        max: true,
         details: {
            // material: "Натуральная люфа",
             dimensions: "23×7 см",
@@ -98,8 +102,9 @@ const products = [
         image: "images/mohalka4.jpeg",
         category: "Для ванной",
         masterPhone: "+7 918 074-41-97",
-        whatsapp: true,
-        telegram: false,
+       //whatsapp: true,
+        telegram: true,
+        max: true,
         details: {
            // material: "Натуральная люфа",
             dimensions: "23×7 см",
@@ -107,7 +112,8 @@ const products = [
             weight: "0.1 кг",
             features: ["Хороший пилинг","Отшелушивание омертвевших клеток"]
         }
-    }*/,
+    }*/
+   ,
     {
         id: 7,
         title: "Кашпо из ротанга",
@@ -119,10 +125,12 @@ const products = [
 Сделано в России. Семейное производство.`,
         price: 2000,
         image: "images/кашпо1карточка.png",
+         images: ["images/кашпо1карточка.png", "images/кашпо_1_карточка_вид2.png", "images/кашпо1_вид_3.png"], // несколько изображений
         category: "Интерьер",
         masterPhone: "+7 918 695 40 61",
-        whatsapp: true,
+        //whatsapp: true,
         telegram: true,
+        max: true,
         details: {
            material: "Искуственный ротанг",
             dimensions: "27×37×37 см",
@@ -130,9 +138,34 @@ const products = [
             weight: "800 г",
             features: ["Ручная работа", "Красивый узор"]
         }
+    },
+    {
+        id: 8,
+        title: "Брелки",
+        description: `Яркий аксессуар для твоего стиля: Коллекционный брелок (1 шт.)
+                                           Добавь красок своим будням!
+ Наши стильные брелки — это идеальный способ выразить свою индивидуальность, украсить рюкзак, ключи или чехол телефона. Каждый брелок выполнен с вниманием к деталям и любовью к качеству.
+
+ВНИМАНИЕ: Брелки продаются поштучно. Выбирай именно тот дизайн, который откликается тебе, или собери всю коллекцию!
+                                           Почему стоит выбрать наши брелки?
+🔗 Надежное крепление: Прочное металлическое кольцо (или карабин) гарантирует, что ваш любимый герой не потеряется.
+🎁 Идеальный подарок: Маленький, но приятный сюрприз для друга, коллеги или самого себя. Подходит для любого повода!`,
+        price: 250,
+        image: "images/брелки.jpg",
+         //images: ["images/кашпо1карточка.png", "images/кашпо_1_карточка_вид2.png", "images/кашпо1_вид_3.png"], // несколько изображений
+        category: "Аксессуары",
+        masterPhone: "+7 918 074-41-97",
+        //whatsapp: true,
+        telegram: true,
+        max: true,
+        details: {
+           material: "Ткань",
+            dimensions: "небольшие",
+            color: "Разные",
+            weight: "легкие",
+            features: ["Ручная работа", "Надежное крепление"]
+        }
     }
-
-
 ];
 
 // Загрузка товаров при загрузке страницы
@@ -227,6 +260,7 @@ function displayProducts(productsArray) {
 }
 
 // Функция открытия модального окна заказа
+// Обновленная функция openOrderModal для script.js:
 function openOrderModal(productId) {
     const product = products.find(p => p.id === productId);
     if (!product) return;
@@ -243,21 +277,41 @@ function openOrderModal(productId) {
     
     const whatsappOption = document.getElementById('whatsapp-available');
     const telegramOption = document.getElementById('telegram-available');
+    const maxOption = document.getElementById('max-available');
     
-    if (product.whatsapp) {
-        whatsappOption.classList.add('available');
-    } else {
-        whatsappOption.classList.remove('available');
+    if (whatsappOption) {
+        if (product.whatsapp) {
+            whatsappOption.classList.add('available');
+            whatsappOption.style.display = 'inline-block';
+        } else {
+            whatsappOption.classList.remove('available');
+            whatsappOption.style.display = 'none';
+        }
     }
     
-    if (product.telegram) {
-        telegramOption.classList.add('available');
-    } else {
-        telegramOption.classList.remove('available');
+    if (telegramOption) {
+        if (product.telegram) {
+            telegramOption.classList.add('available');
+            telegramOption.style.display = 'inline-block';
+        } else {
+            telegramOption.classList.remove('available');
+            telegramOption.style.display = 'none';
+        }
+    }
+    
+    if (maxOption) {
+        if (product.max) {
+            maxOption.classList.add('available');
+            maxOption.style.display = 'inline-block';
+        } else {
+            maxOption.classList.remove('available');
+            maxOption.style.display = 'none';
+        }
     }
     
     modal.style.display = 'block';
 }
+
 
 // Функция сортировки товаров
 function sortProducts(criteria) {

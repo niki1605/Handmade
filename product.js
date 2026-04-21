@@ -8,8 +8,9 @@ const products = [
         image: "images/product2.jpeg",
         category: "Для кухни",
         masterPhone: "Товар на изготовлении",
-        whatsapp: true,
-        telegram: false,
+       // whatsapp: true,
+        telegram: true,
+        max: true,
         details: {
             material: "Массив дуба",
             dimensions: "30×20×2 см",
@@ -26,8 +27,9 @@ const products = [
         image: "images/mohalka1.jpeg",
         category: "Для ванной",
         masterPhone: "+7 918 074-41-97",
-        whatsapp: true,
-        telegram: false,
+      // whatsapp: true,
+        telegram: true,
+        max: true,
         details: {
             //material: "Натуральная люфа",
             dimensions: "23×9 см",
@@ -44,8 +46,8 @@ const products = [
         image: "images/product3.jpg",
         category: "Для кухни",
         masterPhone: "+7 918 688-42-86",
-        whatsapp: true,
-        telegram: false,
+       // whatsapp: true,
+        telegram: true,
         details: {
             material: "Массив бука",
             dimensions: "28×5×3 см",
@@ -62,8 +64,9 @@ const products = [
         image: "images/mohalka2.jpeg",
         category: "Для ванной",
         masterPhone: "+7 918 074-41-97",
-        whatsapp: true,
-        telegram: false,
+      // whatsapp: true,
+        telegram: true,
+        max: true,
         details: {
             //material: "Капрон",
             dimensions: "23×7 см",
@@ -80,8 +83,9 @@ const products = [
         image: "images/mohalka3.jpeg",
         category: "Для ванной",
         masterPhone: "+7 918 074-41-97",
-        whatsapp: true,
-        telegram: false,
+     // whatsapp: true,
+        telegram: true,
+        max: true,
         details: {
            // material: "Натуральная люфа",
             dimensions: "23×7 см",
@@ -98,8 +102,9 @@ const products = [
         image: "images/mohalka4.jpeg",
         category: "Для ванной",
         masterPhone: "+7 918 074-41-97",
-        whatsapp: true,
-        telegram: false,
+      // whatsapp: true,
+        telegram: true,
+        max: true,
         details: {
            // material: "Натуральная люфа",
             dimensions: "23×7 см",
@@ -123,14 +128,42 @@ const products = [
          images: ["images/кашпо1карточка.png", "images/кашпо_1_карточка_вид2.png", "images/кашпо1_вид_3.png"], // несколько изображений
         category: "Интерьер",
         masterPhone: "+7 918 695 40 61",
-        whatsapp: true,
+        //whatsapp: true,
         telegram: true,
+        max: true,
         details: {
            material: "Искуственный ротанг",
             dimensions: "27×37×37 см",
             color: "Светлое дерево",
             weight: "800 г",
             features: ["Ручная работа", "Красивый узор"]
+        }
+    },
+    {
+        id: 8,
+        title: "Брелки",
+        description: `Яркий аксессуар для твоего стиля: Коллекционный брелок (1 шт.)
+                                           Добавь красок своим будням!
+ Наши стильные брелки — это идеальный способ выразить свою индивидуальность, украсить рюкзак, ключи или чехол телефона. Каждый брелок выполнен с вниманием к деталям и любовью к качеству.
+
+ВНИМАНИЕ: Брелки продаются поштучно. Выбирай именно тот дизайн, который откликается тебе, или собери всю коллекцию!
+                                           Почему стоит выбрать наши брелки?
+🔗 Надежное крепление: Прочное металлическое кольцо (или карабин) гарантирует, что ваш любимый герой не потеряется.
+🎁 Идеальный подарок: Маленький, но приятный сюрприз для друга, коллеги или самого себя. Подходит для любого повода!`,
+        price: 250,
+        image: "images/брелки.jpg",
+         //images: ["images/кашпо1карточка.png", "images/кашпо_1_карточка_вид2.png", "images/кашпо1_вид_3.png"], // несколько изображений
+        category: "Аксессуары",
+        masterPhone: "+7 918 074-41-97",
+        //whatsapp: true,
+        telegram: true,
+        max: true,
+        details: {
+           material: "Ткань",
+            dimensions: "небольшие",
+            color: "Разные",
+            weight: "легкие",
+            features: ["Ручная работа", "Надежное крепление"]
         }
     }
 ];
@@ -170,7 +203,6 @@ function displayProductDetails(product) {
     document.getElementById('category-link').href = `index.html?category=${encodeURIComponent(product.category)}`;
     document.getElementById('product-name').textContent = product.title;
     
-    // Устанавливаем первое изображение
     const images = product.images || [product.image];
     document.getElementById('product-image').src = images[0];
     document.getElementById('product-image').alt = product.title;
@@ -205,7 +237,6 @@ function setupGallery(product) {
     
     currentImageIndex = 0;
     
-    // Создаем контейнер для миниатюр, если его нет
     let thumbnailsContainer = document.querySelector('.thumbnails-container');
     if (!thumbnailsContainer) {
         const galleryDiv = document.querySelector('.product-gallery');
@@ -214,7 +245,6 @@ function setupGallery(product) {
         galleryDiv.appendChild(thumbnailsContainer);
     }
     
-    // Очищаем и заполняем миниатюры
     thumbnailsContainer.innerHTML = '';
     images.forEach((imgSrc, idx) => {
         const thumb = document.createElement('div');
@@ -235,10 +265,8 @@ function setupGallery(product) {
         thumbnailsContainer.appendChild(thumb);
     });
     
-    // Обновляем основное изображение
     updateMainImage(images[currentImageIndex]);
     
-    // Показываем/скрываем кнопки навигации
     const prevBtn = document.getElementById('prev-image');
     const nextBtn = document.getElementById('next-image');
     
@@ -246,7 +274,6 @@ function setupGallery(product) {
         prevBtn.style.display = images.length > 1 ? 'flex' : 'none';
         nextBtn.style.display = images.length > 1 ? 'flex' : 'none';
         
-        // Удаляем старые обработчики, чтобы не навешивать лишние
         const newPrevBtn = prevBtn.cloneNode(true);
         const newNextBtn = nextBtn.cloneNode(true);
         prevBtn.parentNode.replaceChild(newPrevBtn, prevBtn);
@@ -272,11 +299,6 @@ function updateMainImage(src) {
     const mainImg = document.getElementById('product-image');
     if (mainImg) {
         mainImg.src = src;
-    }
-    // Также обновляем изображение в модальном окне (если открыто)
-    const fullscreenImg = document.getElementById('fullscreen-image');
-    if (fullscreenImg && fullscreenImg.src !== src) {
-        // Не обновляем автоматически, чтобы не сбивать просмотр
     }
 }
 
@@ -349,7 +371,6 @@ function setupEventListeners(product) {
             orderModal.style.display = 'none';
             imageModal.style.display = 'none';
         }
-        // Переключение изображений стрелками, если галерея открыта
         if (imageModal.style.display === 'block' && currentProduct) {
             const images = currentProduct.images || [currentProduct.image];
             if (e.key === 'ArrowLeft') {
@@ -384,20 +405,35 @@ function openOrderModal(product) {
     
     const whatsappOption = document.getElementById('whatsapp-available');
     const telegramOption = document.getElementById('telegram-available');
+    const maxOption = document.getElementById('max-available');
     
     if (whatsappOption) {
         if (product.whatsapp) {
             whatsappOption.classList.add('available');
+            whatsappOption.style.display = 'inline-block';
         } else {
             whatsappOption.classList.remove('available');
+            whatsappOption.style.display = 'none';
         }
     }
     
     if (telegramOption) {
         if (product.telegram) {
             telegramOption.classList.add('available');
+            telegramOption.style.display = 'inline-block';
         } else {
             telegramOption.classList.remove('available');
+            telegramOption.style.display = 'none';
+        }
+    }
+    
+    if (maxOption) {
+        if (product.max) {
+            maxOption.classList.add('available');
+            maxOption.style.display = 'inline-block';
+        } else {
+            maxOption.classList.remove('available');
+            maxOption.style.display = 'none';
         }
     }
     
